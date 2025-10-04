@@ -17,7 +17,7 @@ The setup consists of:
 - VS Code (or terminal) with SSH access configured.
 
 ## 1. Login to a CloudLab Node
-SSH into your assigned node from VS Code (example for clnode289):
+SSH into your assigned node from VS Code (example for `clnode289`):
 ```bash
   ssh -i ~/.ssh/id_ed25519_cloudlab -vvv Parthaw@clnode289.clemson.cloudlab.us
 ```
@@ -42,7 +42,7 @@ SSH into your assigned node from VS Code (example for clnode289):
   source .venv/bin/activate
 ```
 ## 4. Install Dependencies:
-Install the dependencies defined in pyproject.toml:
+Install the dependencies defined in `pyproject.toml`:
 ```bash
   pip install -e .
 ```
@@ -56,28 +56,28 @@ Before starting server-client execution, verify that scripts run correctly:
 ```
 
 ## 6. Run Federated Learning with Flower:
-### On the Server Node (e.g., clnode289)
+### On the Server Node (e.g., `clnode289`)
 ```bash
   python3 ./fastai_example/server_app.py --host 0.0.0.0 --port 8080 --rounds 5
 ```
 ### On the Client Nodes 
-Client 1 (e.g., clnode293)
+Client 1 (e.g., `clnode293`)
 ```bash
   python3 ./fastai_example/client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 0
 ```
-Client 2 (e.g., clnode287)
+Client 2 (e.g., `clnode287`)
 ```bash
   python3 ./fastai_example/client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 1
 ```
-Client 3 (e.g., clnode302)
+Client 3 (e.g., `clnode302`)
 ```bash
   python3 ./fastai_example/client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 2
 ```
 
 ## Notes
-- Replace clnodeXXX.clemson.cloudlab.us with the actual hostnames of your reserved nodes.
+- Replace `clnodeXXX.clemson.cloudlab.us` with the actual hostnames of your reserved nodes.
 - Ensure that the server is running before starting the clients.
-- Each client uses a different --partition-id for distinct data partitions.
+- Each client uses a different `--partition-id` for distinct data partitions.
 
 ## References
 - [Flower Framework](https://flower.ai/)
