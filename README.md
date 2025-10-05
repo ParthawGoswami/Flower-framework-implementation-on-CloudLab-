@@ -74,6 +74,30 @@ Client 3 (e.g., `clnode302`)
   python3 ./fastai_example/client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 2
 ```
 
+## 7. Make a directory and save results:
+### On the Server Node (e.g., `clnode289`)
+```bash
+  # cd /users/Parthaw/quickstart-fastai/fastai_example
+  mkdir -p results/server
+  # Run server and save log (example)
+  python3 server_app.py --host 0.0.0.0 --port 8080 --rounds 3 |& tee results/server_run_$(date +%Y%m%d_%H%M%S).log
+```
+### On the Client Nodes 
+Client 1 (e.g., `clnode293`)
+```bash
+  # cd /users/Parthaw/quickstart-fastai/fastai_example
+  mkdir -p results/clients
+  python3 client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 0 |& tee results/clients/client0_$(date +%Y%m%d_%H%M%S).log
+```
+Client 2 (e.g., `clnode287`)
+```bash
+  python3 client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 1 |& tee results/clients/client1_$(date +%Y%m%d_%H%M%S).log
+```
+Client 3 (e.g., `clnode302`)
+```bash
+  python3 client_app.py --server-address clnode289.clemson.cloudlab.us:8080 --partition-id 2 |& tee results/clients/client2_$(date +%Y%m%d_%H%M%S).log
+```
+
 ## Notes
 - Replace `clnodeXXX.clemson.cloudlab.us` with the actual hostnames of your reserved nodes.
 - Ensure that the server is running before starting the clients.
